@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear amigo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div class="navbar navbar-dark bg-dark box-shadow">
+            <div class="container d-flex justify-content-between" style="justify-content: space-around;">
+                <a href="/" class="navbar-brand d-flex align-items-center">
+                    <strong>Todos mis amigos</strong>
+                </a>
+                <a href="/crea" class="navbar-brand d-flex align-items-center">
+                    <strong>Crear un nuevo amigo</strong>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="container text-center border-dark rounded" style="width: 600px;padding: 20px;">
+        <div>
+            <form action="/create_user" method="post">
+                <h4 class="text-dark">Agrega un nuevo amigo</h4>
+                <div class="row">
+                    <div class="row-md-6 mb-3">
+                        <label for="fname">Nombre</label>
+                        <input type="text" class="form-control" name="fname" placeholder="" value="" required>
+                    </div>
+                    <div class="row-md-6 mb-3">
+                        <label for="lname">Apellido</label>
+                        <input type="text" class="form-control" name="lname" placeholder="" value="" required>
+                    </div>
+                    <div class="row-md-6 mb-3">
+                        <label for="eml">Email</label>
+                        <input type="text" class="form-control" name="eml" placeholder="" value="" required>
+                    </div>
+                </div>
+                <button class="btn btn-dark btn-lg btn-block rounded" type="submit">Agrega un amigo</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
