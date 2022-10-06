@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div class="navbar navbar-dark bg-dark box-shadow">
+            <div class="container d-flex justify-content-between" style="justify-content: space-around;">
+                <a href="/" class="navbar-brand d-flex align-items-center text-warning">
+                    <strong class="border border-warning rounded" style="padding: 5px;">Todos los usuarios</strong>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="container text-center border-dark rounded" style="padding: 20px;">
+        <form action="/create_user" method="post">
+            <table class="table text-center">
+                <tr class="table-dark text-warning"><div class="navbar navbar-dark bg-dark box-shadow text-warning"><h4>Crea un nuevo usuario</h4></div></tr>
+                <tr class="table-dark text-warning">
+                    <td>Nombre</td>
+                    <td>Apellido</td>
+                    <td>Email</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="fname" class="form-control" value="" required></td>
+                    <td><input type="text" name="lname" class="form-control" value="" required></td>
+                    <td><input type="text" name="eml" class="form-control" value="" required></td>
+                </tr>
+            </table>
+            <button class="btn btn-dark btn-lg btn-block rounded text-warning" type="submit">Agrega un amigo</button>
+        </form>
+    </div>
+</body>
+</html>

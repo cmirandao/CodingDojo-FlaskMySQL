@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div class="navbar navbar-dark bg-dark box-shadow">
+            <div class="container d-flex justify-content-between" style="justify-content: space-around;">
+                <a href="/" class="navbar-brand d-flex align-items-center text-warning">
+                    <strong class="border border-warning rounded" style="padding: 5px;">Todos los usuarios</strong>
+                </a>
+                <a href="/crea" class="navbar-brand d-flex align-items-center text-warning">
+                    <strong class="border border-warning rounded" style="padding: 5px;">Agrega un nuevo usuario</strong>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="container text-center border-dark rounded" style="padding: 20px;">
+        <table class="table text-center">
+            <tr class="table-dark text-warning"><div class="navbar navbar-dark bg-dark box-shadow text-warning" style="padding: 20px;"><h4>Ficha personal</h4></div></tr>
+            <tr class="table-dark text-warning">
+                <td>Id</td>
+                <td>Nombre</td>
+                <td>Apellido</td>
+                <td>Email</td>
+                <td>Fecha &uacute;ltima actualizaci&oacute;n</td>
+                <td>Acciones</td>
+            </tr>
+            <tr>
+                <td>{{usuario['id']}}</td>
+                <td>{{usuario['nombre']}}</td>
+                <td>{{usuario['apellido']}}</td>
+                <td>{{usuario['email']}}</td>
+                <td>{{usuario['updated_at']}}</td>
+                <td><a href="/show_edit/{{usuario.id}}">Edit</a> | <a href="/delete/{{usuario.id}}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

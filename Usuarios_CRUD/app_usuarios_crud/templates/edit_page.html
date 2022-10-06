@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div class="navbar navbar-dark bg-dark box-shadow">
+            <div class="container d-flex justify-content-between" style="justify-content: space-around;">
+                <a href="/" class="navbar-brand d-flex align-items-center text-warning">
+                    <strong class="border border-warning rounded" style="padding: 5px;">Todos los usuarios</strong>
+                </a>
+                <a href="/crea" class="navbar-brand d-flex align-items-center text-warning">
+                    <strong class="border border-warning rounded" style="padding: 5px;">Agrega un nuevo usuario</strong>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="container text-center border-dark rounded" style="padding: 20px;">
+        <form action="/edit/{{usuario['id']}}" method="post">
+            <table class="table text-center">
+                <tr class="table-dark text-warning"><div class="navbar navbar-dark bg-dark box-shadow text-warning" style="padding: 20px;"><h4>Actualizar datos</h4></div></tr>
+                <tr class="table-dark text-warning">
+                    <td>Id</td>
+                    <td>Nombre</td>
+                    <td>Apellido</td>
+                    <td>Email</td>
+                </tr>
+                <tr>
+                    <td><input type="text" style="width: 50px;" class="form-control text-center" value="{{usuario['id']}}" disabled></td>
+                    <td><input type="text" name="fname" id="fname" class="form-control" value="{{usuario['nombre']}}"></td>
+                    <td><input type="text" name="lname" id="lname" class="form-control" value="{{usuario['apellido']}}"></td>
+                    <td><input type="text" name="eml" id="eml" class="form-control" value="{{usuario['email']}}"></td>
+                </tr>
+            </table>
+            <button class="btn btn-dark btn-lg btn-block rounded text-warning" type="submit">Editar</button>
+            <a href="/show/{{usuario.id}}" class="btn btn-dark btn-lg btn-block rounded text-warning">Volver a la ficha</a>
+        </form>
+    </div>
+</body>
+</html>
