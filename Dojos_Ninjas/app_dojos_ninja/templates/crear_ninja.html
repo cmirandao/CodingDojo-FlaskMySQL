@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div class="navbar navbar-dark bg-secondary box-shadow">
+            <div class="container d-flex justify-content-center" style="justify-content: space-around;">
+                <a href="/dojo" class="navbar-brand d-flex align-items-center text-info">
+                    <strong class="border border-info rounded" style="padding: 5px;">Home</strong>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="d-flex justify-content-around" style="margin: 20px;">
+        <div class="container text-center border border-dark bg-secondary rounded" style="padding: 20px;width: 400px;">
+            <form action="/create_ninja" method="post">
+                <table class="table text-center">
+                    <tr class="text-info"><div class="text-info"><h4>Crea un nuevo ninja</h4></div></tr>
+                    <tr class="text-info">
+                        <td><label class="text-white" for="dojo_id">Dojo:</label></td>
+                        <td><select class="rounded" name="dojo_id" id="dojo_id" style="width: 250px;" required>
+                            <option value="" disabled selected hidden>--Selecciona un Dojo--</option>
+                            {% for dojo in todos_dojos %}
+                                <option value="{{dojo.id}}">{{dojo.nombre}}</option>
+                            {% endfor %}
+                        </select></td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="text-white">Nombre</td>
+                        <td><input type="text" name="primer_nombre" class="rounded" value="" required></td>
+                    </tr>
+                    <tr>
+                        <td class="text-white">Apellido</td>
+                        <td><input type="text" name="apellido" class="rounded" value="" required></td>
+                    </tr>
+                    <tr>
+                        <td class="text-white">Edad</td>
+                        <td><input type="text" name="edad" class="rounded" value="" required></td>
+                    </tr>
+                </table>
+                <button class="btn btn-lg btn-block rounded text-info border-info" type="submit">Crear</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
