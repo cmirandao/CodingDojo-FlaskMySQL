@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesi&oacute;n</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body style="background-color: rgb(150, 150, 150);">
+    <div class="d-flex justify-content-center" style="margin: 20px;">
+        <div class="container text-white border border-dark bg-dark rounded" style="padding: 20px;width: 400px;margin: 10px;">
+            <div class="text-primary"><h4>Registro</h4></div>
+            <form action="/newuser" method="post">
+                <input type="hidden" name="tipo" value="registro" />
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Nombre</label>
+                    <input style="margin-top: 10px;" type="text" class="form-control" name="nombre" id="formGroupExampleInput" value="" required>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Apellido</label>
+                    <input style="margin-top: 10px;" type="text" class="form-control" name="apellido" id="formGroupExampleInput" value="" required>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Email</label>
+                    <input style="margin-top: 10px;" type="text" class="form-control" name="email" id="formGroupExampleInput" value="" required>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Contraseña</label>
+                    <input style="margin-top: 10px;" type="password" class="form-control" name="password" id="formGroupExampleInput" value="" required>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Confirmar contraseña</label>
+                    <input style="margin-top: 10px;" type="password" class="form-control" name="confpassword" id="formGroupExampleInput" value="" required>
+                </div>
+                <div class="form-check" style="margin-top: 10px;">
+                    <input style="margin-top: 5px;" type="checkbox" name="checkbox" class="form-check-input" id="formGroupExampleInput" required>
+                    <label class="form-check-label" for="formGroupExampleInput">Aceptar terminos y condiciones</label>
+                </div>
+                <button class="btn btn-lg btn-block rounded text-primary border-info" type="submit" style="margin-top: 10px;">Aceptar</button>
+            </form>
+        </div>
+    
+        <div class="container text-white border border-dark rounded bg-dark" style="padding: 20px;width: 300px;margin: 10px;">
+            <div class="text-primary"><h4>Login</h4></div>
+            <form action="/login" method="post">
+                <input type="hidden" name="tipo" value="login" />
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Email</label>
+                    <input style="margin-top: 10px;" type="text" class="form-control" name="email" id="formGroupExampleInput" value="" required>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Contraseña</label>
+                    <input style="margin-top: 10px;" type="password" class="form-control" name="password" id="formGroupExampleInput" value="" required>
+                </div>
+                <button class="btn btn-lg btn-block rounded text-primary border-info" type="submit" style="margin-top: 15px;margin-bottom: 15px;">Login</button>
+            </form>
+            <div>
+                {% with messages_login = get_flashed_messages() %}
+                {% if messages_login %}
+                    <ul>
+                    {% for mssj in messages_login %}
+                        <li>{{ mssj }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
