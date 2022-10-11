@@ -1,0 +1,65 @@
+<!-- cuando en la pagina de recetas presiona ver receta entra en esta pagina que muestra la
+ficha de esa receta en particular como si fuera una ficha bibliografica con todos
+los datos de la receta y ademas con el nombre del creador. -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recipe Share</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    </head>
+<body style="background-color: rgba(110, 110, 110, 0.712);">
+    <header>
+        <div class="navbar navbar-dark text-light box-shadow" style="background-color: rgba(41, 41, 61, 0.815);padding: 20px;">
+            <div class="container d-flex justify-content-between">
+                <h1>Recipebook</h1>
+                <div>
+                    <h2>Welcome, {{un_usuario.first_name}}</h2>
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-secondary btn-lg btn-block text-light rounded border-dark" style="margin: 5px;" href="/recipes">Volver a recetas</a>
+                        <a class="btn btn-lg btn-block text-light rounded border-dark" style="margin: 5px;background-color: rgba(3, 3, 27, 0.815);" href="/clearsession">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="d-flex justify-content-center">
+        <div class="border border-dark rounded" style="margin: 20px;padding: 20px;width:800px">
+            <table class="table table-striped">
+                <thead>
+                    <tr><h3>{{todas_recetas[0].title}}</h3></tr>
+                    <tr>
+                        {% for rcp in todas_recetas %}
+                            <h5>Posteado por: {{rcp.one_recipe[0].first_name}} {{rcp.one_recipe[0].last_name}}</h5>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Descripci&oacute;n</th>
+                        <td>{{todas_recetas[0].description}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">&lt; a 30 min?</th>
+                        {% if todas_recetas[0].recipe_time==1 %}
+                            <td>Si</td>{% endif %}
+                        {% if todas_recetas[0].recipe_time==2 %}
+                            <td>No</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <th scope="row">Instrucciones</th>
+                        <td>{{todas_recetas[0].instructions}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Fecha de creaci&oacute;n</th>
+                        <td>{{todas_recetas[0].created_at.strftime('%d-%m-%Y')}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

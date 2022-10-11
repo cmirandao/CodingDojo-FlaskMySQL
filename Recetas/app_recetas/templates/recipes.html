@@ -1,0 +1,77 @@
+<!-- despues del login, muestra el nombre del usuario logeado
+un boton logout, un boton para crear una nueva receta y una tabla con la lista de recetas publicadas
+con el nombre de la receta, tiempo de la receta, quien la creo y una columna de acciones:
+ver receta y en las que creo ese usuario se muestra ademas: editar y borrar -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Share</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body style="background-color: rgba(110, 110, 110, 0.712);">
+    <header>
+        <div class="navbar navbar-dark text-light box-shadow" style="background-color: rgba(41, 41, 61, 0.815);padding: 20px;">
+            <div class="container d-flex justify-content-between">
+                <h1>Recipebook</h1>
+                <div>
+                    <h2>Welcome, {{un_usuario.first_name}}</h2>
+                    <div class="d-flex justify-content-between">
+                        
+                    </div><a class="btn btn-lg btn-block text-light rounded border-dark" style="background-color: rgba(3, 3, 27, 0.815);" href="/clearsession">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="d-flex justify-content-center" style="margin: 20px;">
+        <div class="container border border-dark rounded" style="padding: 20px;margin: 10px;">
+            <div class="container d-flex justify-content-between">
+                <h5>All posted recipes:</h5>
+                <a class="text-dark alert-link" href="/recipes/new">+Crear Nueva Receta</a>
+            </div>
+            <div class="container border border-dark rounded" style="overflow: auto;height: 350px;padding: 20px;">
+                <table class="table table-striped">
+                    <th scope="col">T&iacute;tulo</th>
+                    <th scope="col">&lt; a 30 min</th>
+                    <th scope="col">Posteado por</th>
+                    <th scope="col">Acciones</th>
+                    {% for rcp in todas_recetas %}
+                    <tr>
+                        {% if rcp.id==empty %}
+                            <td class="text-center" colspan="4">A&uacute;n no se ingresan recetas</td>
+                        {% else %}
+                            <td>{{rcp.title}}</td>
+                            {% if rcp.recipe_time==1 %}
+                                <td>Si</td>{% endif %}
+                            {% if rcp.recipe_time==2 %}
+                                <td>No</td>
+                            {% endif %}
+                            <td>{{rcp.on_users[0].first_name}} {{rcp.on_users[0].last_name}}</td>
+                            {% if rcp.user_id==un_usuario.id %}
+                                <td><a href="/recipes/{{rcp.id}}">Ver receta</a> | <a href="/recipes/edit/{{rcp.id}}">Editar</a> | <a href="/delete/{{rcp.id}}">Borrar</a></td>
+                            {% else %}
+                                <td><a href="/recipes/{{rcp.id}}">Ver receta</a></td>
+                            {% endif %}
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+    <div>
+        {% with messages_login = get_flashed_messages() %}
+        {% if messages_login %}
+            <ul>
+            {% for mssj in messages_login %}
+                <li>{{ mssj }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+</body>
+</html>
