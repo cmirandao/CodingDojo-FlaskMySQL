@@ -19,21 +19,22 @@
         </div>
     </header>
     <div class="d-flex justify-content-around" style="margin: 20px;height: 320px;">
-        <div class="text-center" style="width: 400px;overflow: auto;">
+        <div class="text-center" style="width: 400px;">
             <h1>Lista de usuarios</h1>
-
-            <table class="table">
-                <th><h4>Nombre</h4></th>
-                <th><h4>Apellido</h4></th>
-                <th><h4>Fecha creaci&oacute;n</h4></th>
-                {% for usuario in todos_usuarios %}
-                <tr>
-                    <td>{{usuario.nombre}}</td>
-                    <td>{{usuario.apellido}}</td>
-                    <td>{{usuario.created_at}}</td>
-                </tr>
-                {% endfor %}
-            </table>
+            <div style="overflow: auto;height: 320px;">
+                <table class="table">
+                    <th><h4>Nombre</h4></th>
+                    <th><h4>Apellido</h4></th>
+                    <th><h4>Fecha creaci&oacute;n</h4></th>
+                    {% for usuario in todos_usuarios %}
+                    <tr>
+                        <td>{{usuario.nombre}}</td>
+                        <td>{{usuario.apellido}}</td>
+                        <td>{{usuario.created_at.strftime('%d-%m-%Y')}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
         
         <div>

@@ -12,28 +12,16 @@ def index():
 
 @app.route('/newuser', methods=['POST'])
 def register():
-    # validar el formulario aquí...
-    # crear el hash
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
-    print(pw_hash)
-    # poner pw_hash en el diccionario de datos
     data = {
         "nombre": request.form['nombre'],
         "apellido": request.form['apellido'],
         "email": request.form['email'],
         "password" : pw_hash
     }
-    # validamos que el formulario se haya llenado correctamente, si no vuelve a la raiz
-    # que es donde esta nuestro formulario
     if not Usuario.validar_usuario(request.form):
         return redirect("/")
-    #verificar que al registrarse el input password sea igua al confirm password (se realizo en el static method de la clase)
-    # if request.form['password'] != request.form['confpassword']:
-    #     flash('Passwords no coinciden')
-    #     return redirect ('/')
-    # llama al @classmethod de guardado en Usuario
     user_id = Usuario.save(data)
-    # almacenar id de usuario en la sesión
     session['user_id'] = user_id
     return redirect(f"/dashboard/{session['user_id']}")
 

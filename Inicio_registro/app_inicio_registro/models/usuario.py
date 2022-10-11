@@ -43,8 +43,6 @@ class Usuario:
             all_usr.append(cls(usr))
         return all_usr
 
-    # los métodos estáticos no tienen self o cls pasados a los parámetros
-    # necesitamos tomar un parámetro para representar nuestra hamburguesa
     @staticmethod
     def validar_usuario(registro):
         correo={
