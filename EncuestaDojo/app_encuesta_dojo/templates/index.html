@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta Dojo</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body style="background-color: rgba(134, 134, 134, 0.719);">
+    <main role="main">
+        <div class="d-flex justify-content-center" style="margin: 20px;">
+            <div class="container border-dark rounded">
+                <form action='/process' method='post'>
+                    <h4 class="text-warning text-center">Encuesta Dojo</h4>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="text-white" for="nombre">Nombre:</label>
+                            <input class="rounded" type="text" name="nombre" value="">
+                        </div>
+                        <div class="form-group">
+                            <label class="text-white" for="ubicacion">Ubicaci&oacute;n:</label>
+                            <select class="rounded" name="ubicacion">
+                                <option value="Santiago">Santiago</option>
+                                <option value="Valparaiso">Valparaiso</option>
+                                <option value="Antofagasta">Antofagasta</option>
+                                <option value="Concepci&oacute;n">Concepci&oacute;n</option>
+                                <option value="Punta Arenas">Punta Arenas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-white" for="idioma">Idioma Favorito:</label>
+                            <select class="rounded" name="idioma">
+                                <option value="HTML">HTML</option>
+                                <option value="CSS">CSS</option>
+                                <option value="Java">Java</option>
+                                <option value="Python">Python</option>
+                                <option value="C#">C#</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-white" for="comentario">Comentarios:</label>
+                            <textarea class="rounded" name="comentario" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-warning btn-lg btn-block rounded" type="submit">Enviar</button>
+                </form>
+                <div class="text-light">
+                    {% with messages_login = get_flashed_messages() %}
+                        {% if messages_login %}
+                            <ul>
+                            {% for mssj in messages_login %}
+                                <li>{{ mssj }}</li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="container border-dark rounded" style="overflow: auto;">
+                <table class="table table-striped">
+                    <th class="text-warning" scope="col"> Nombre</th>
+                    <th class="text-warning" scope="col">Ubicaci&oacute;n</th>
+                    <th class="text-warning" scope="col">Idioma Favorito</th>
+                    <th class="text-warning" scope="col">Comentarios</th>
+                    {% for djo in all_dojos %}
+                    <tr>
+                        {% if djo.id==empty %}
+                            <td class="text-center text-light" colspan="4">A&uacute;n no se ingresan encuestas</td>
+                        {% else %}
+                            <td class="text-light">{{djo.nombre}}</td>
+                            <td class="text-light">{{djo.ubicacion}}</td>
+                            <td class="text-light">{{djo.idioma}}</td>
+                            <td class="text-light">{{djo.comentario}}</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/logic.js') }}"></script>
+</body>
+</html>

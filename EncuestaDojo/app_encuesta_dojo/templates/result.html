@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta Dojo</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body style="background-color: rgba(134, 134, 134, 0.719);">
+    <main role="main">
+        <div class="container border-dark rounded">
+            <div class="text-light">
+                {% with messages_login = get_flashed_messages() %}
+                    {% if messages_login %}
+                        <ul>
+                        {% for mssj in messages_login %}
+                            <li>{{ mssj }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <h4 class="text-warning">Informaci&oacute;n enviada</h4>
+            <div class="row">
+                <p><label class="text-white" for="nombre">Nombre: {{un_dojo.nombre}}</label></p>
+                <p><label class="text-white" for="ubicacion">Ubicaci&oacute;n: {{un_dojo.ubicacion}}</label></p>
+                <p><label class="text-white" for="idioma">Idioma Favorito: {{un_dojo.idioma}}</label></p>
+                <p><label class="text-white" for="comentario">Comentarios: {{un_dojo.comentario}}</label></p>
+            </div>
+            <a class="btn btn-warning btn-lg btn-block rounded" href="/volver">Volver al Home</a>
+        </div>
+    </main>
+</body>
+</html>
