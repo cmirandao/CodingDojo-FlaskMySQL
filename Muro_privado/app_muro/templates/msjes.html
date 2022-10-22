@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body style="background-color: rgba(110, 110, 110, 0.712);">
+    <header>
+        <div class="navbar navbar-dark text-light box-shadow" style="background-color: rgba(41, 41, 61, 0.815);padding: 20px;">
+            <div class="container d-flex justify-content-between">
+                <h1>CodingDojo Wall</h1>
+                <div>
+                    <h2>Welcome, {{un_usuario.nombre}}</h2>
+                    <a class="btn btn-lg btn-block text-light rounded border-dark" style="background-color: rgba(3, 3, 27, 0.815);" href="/clearsession">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="d-flex justify-content-center" style="margin: 20px;">
+        <div class="container border border-dark rounded" style="padding: 20px;margin: 10px;">
+            <div>
+                <h5>{{msjusr}} Mensajes para ti:</h5>
+            </div>
+            <div class="container border border-dark rounded" style="overflow: auto;height: 350px;padding: 20px;">
+                <table class="table table-striped">
+                    <th scope="col"> Remitente</th>
+                    <th scope="col">Mensaje</th>
+                    <th scope="col">Enviado hace</th>
+                    <th scope="col">Acci&oacute;n</th>
+                    <tr>
+                        {% if msjusr==0 %}
+                            <td class="text-center" colspan="3">No tienes mensajes</td>
+                        {% else %}
+                    </tr>
+                    {% for mss in msjes_user %}
+                    <tr>
+                        <td>{{mss.nombre}}</td>
+                        <td>{{mss.mensaje}}</td>
+                        <td>{{mss.tiempo()}}</td>
+                        <td><a href="/delete/{{mss.idmsje}}"><button type="button" class="btn btn-primary btn-sm" style="border-radius: 50%;">X</button></a></td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+        <div class="container border border-dark rounded" style="padding: 20px;margin: 10px;">
+            <form action='/create' method='post'>
+                <input type="hidden" name="tipo" value="msje" />
+                <div>
+                    <h4>Envia mensajes a tus contactos</h4>
+                </div>
+                <div><h6 style="color: rgb(92, 32, 89);">Has mandado {{contm}} mensajes hasta ahora</h6></div>
+                <div  class="container border border-dark rounded">
+                    <table>
+                            <tr>
+                                <th scope="col" colspan="2">¿A quien se lo quieres mandar?</th>
+                                <th>
+                                    <select class="rounded" name="usuario">
+                                    {% for usr in all_users %}
+                                    {% if usr['iduser'] != un_usuario.iduser %}
+                                        <option value="{{usr['iduser']}}">{{usr['nombre']}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                    </select>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th scope="col" colspan="2">Mensaje</th>
+                                <td>
+                                    <textarea class="rounded" name="mensaje" cols="30" rows="5"></textarea>
+                                </td>
+                            </tr>
+                    </table>
+                </div>
+                <button class="btn btn-lg btn-block text-light rounded border-dark" style="background-color: rgba(3, 3, 27, 0.815);" type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+    <div>
+        {% with messages_login = get_flashed_messages() %}
+        {% if messages_login %}
+            <ul>
+            {% for mssj in messages_login %}
+                <li>{{ mssj }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+</body>
+</html>
